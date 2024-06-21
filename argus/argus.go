@@ -48,7 +48,7 @@ func MakeTxDataByAbi(abiJson, method string, args ...interface{}) ([]byte, error
 	if err != nil {
 		return nil, err
 	}
-	pack, err2 := parsed.Pack(method, args)
+	pack, err2 := parsed.Pack(method, args...)
 	if err2 != nil {
 		return nil, err
 	}
