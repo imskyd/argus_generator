@@ -67,6 +67,11 @@ func MakeCallData(to common.Address, value *big.Int, data []byte) CallData {
 	return cd
 }
 
+func (a *ArgusService) GetTransactOpts() (*bind.TransactOpts, error) {
+	o, err := bind.NewKeyedTransactorWithChainID(a.privateKey, a.chainId)
+	return o, err
+}
+
 func (a *ArgusService) ExecTransaction(opts *bind.TransactOpts, callData CallData) (*types.Transaction, error) {
 	if opts == nil {
 		o, _ := bind.NewKeyedTransactorWithChainID(a.privateKey, a.chainId)
