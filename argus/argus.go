@@ -80,3 +80,12 @@ func (a *ArgusService) ExecTransaction(opts *bind.TransactOpts, callData CallDat
 	tx, err := a.contract.ExecTransaction(opts, callData)
 	return tx, err
 }
+
+func (a *ArgusService) ExecTransactions(opts *bind.TransactOpts, callDataList []CallData) (*types.Transaction, error) {
+	if opts == nil {
+		o, _ := bind.NewKeyedTransactorWithChainID(a.privateKey, a.chainId)
+		opts = o
+	}
+	tx, err := a.contract.ExecTransactions(opts, callDataList)
+	return tx, err
+}
